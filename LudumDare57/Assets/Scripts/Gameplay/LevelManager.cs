@@ -22,7 +22,7 @@ public class LevelManager : MonoBehaviour
 
     private void HandleStartGame()
     {
-        _player.HandleStartGame();
+        
     }
 
     private void HandlePlayerDead()
