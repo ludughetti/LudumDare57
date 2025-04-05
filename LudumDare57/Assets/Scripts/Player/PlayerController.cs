@@ -15,9 +15,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool _enableLog = true;
 
     private Vector2 _currentDirection = Vector2.zero;
+    private Vector2 _currentInput = Vector2.zero;
     private float _currentSpeed = 0f;
     private bool _isMoving = false;
     private bool _canMove = true;
+    private bool _isImpulsed = false;
 
     private Coroutine _movementCoroutine;
 
@@ -54,7 +56,13 @@ public class PlayerController : MonoBehaviour
 
     public void AddUpImpulse(float movementToAdd)
     {
-        _currentDirection += Vector2.up * movementToAdd;
+        _isImpulsed = true;
+        _currentDirection.y += movementToAdd;
+    }
+
+    public void StopImpulse()
+    {
+        _isImpulsed = false;
     }
 
     private void HandleMovement(Vector2 newDirection)
@@ -62,9 +70,16 @@ public class PlayerController : MonoBehaviour
         if (!_canMove)
             return;
 
+        _currentInput = newDirection;
+
+        if (newDirection.y > 0.1f)
+        {
+            _currentInput.y = newDirection.y * _gameplayConfigs.VerticalUpModifier;
+        }
+
         IsMovingEvent?.Invoke(true);
         _isMoving = true;
-        StartNewMovementCoroutine(SmoothMovement(newDirection));
+        StartNewMovementCoroutine(SmoothMovement(_currentInput));
     }
 
     private void StopMovement()
@@ -93,18 +108,9 @@ public class PlayerController : MonoBehaviour
                 _currentSpeed = Mathf.Min(_currentSpeed, _gameplayConfigs.PlayerBaseMovSpeed);
             }
 
-            _currentDirection = newDirection;
-
-            if (newDirection.y > 0.1f)
+            if (!_isImpulsed)
             {
-                _currentDirection.y = newDirection.y * _gameplayConfigs.VerticalUpModifier;
-            }
-            else if (newDirection.y < -0.1f)
-            {
-                _currentDirection.y = newDirection.y;
-            }
-            else
-            {
+                _currentDirection = newDirection;
                 _currentDirection.y = Mathf.Lerp(_currentDirection.y, -1f, Time.deltaTime * _gameplayConfigs.SinkSpeed);
             }
         }
