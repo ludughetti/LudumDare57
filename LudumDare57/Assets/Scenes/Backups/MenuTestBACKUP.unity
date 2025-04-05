@@ -1287,11 +1287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b72469758dc77b4a94104b5366d58ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerBaseMovSpeed: 3.5
-  _playerAcceleration: 5
-  _sinkSpeed: 1
-  _waterFriction: 0.5
-  VerticalUpModifier: 0.5
+  PlayerBaseMovSpeed: 1
   PlayerSkillAvailableUponStart: 1
 --- !u!4 &657844918
 Transform:
@@ -1430,7 +1426,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameManager: {fileID: 657844916}
-  _player: {fileID: 5508272554564940478, guid: 3bed43a1699506841a89aa0825c41941, type: 3}
+  _player: {fileID: 0}
 --- !u!1 &798926689
 GameObject:
   m_ObjectHideFlags: 0
