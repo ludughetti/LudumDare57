@@ -553,6 +553,7 @@ GameObject:
   - component: {fileID: 1935881315}
   - component: {fileID: 1935881314}
   - component: {fileID: 1935881313}
+  - component: {fileID: 1935881317}
   m_Layer: 4
   m_Name: Enemy
   m_TagString: Untagged
@@ -572,16 +573,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c5081d779a86f641afcd4efc1614110, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  config: {fileID: 11400000, guid: 13dccfcecba476542bf6ec0c3a8603d0, type: 2}
+  config: {fileID: 11400000, guid: ab353b2a51889d64f8c8a03ee67b0496, type: 2}
   waypoints:
   - {fileID: 1635620742}
   - {fileID: 1575675251}
-  patrolSpeed: 1
-  chaseSpeed: 2
-  chaseDuration: 3
+  patrolSpeed: 2
+  chaseSpeed: 3
+  chaseDuration: 2
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
+  attackDistance: 2
 --- !u!58 &1935881314
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -632,7 +634,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -660,6 +662,43 @@ Transform:
   - {fileID: 2134144566}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1935881317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1935881312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7557635bcbfc5b945ba621775f421ca9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slideDuration: 1
+  slideCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &2134144565
 GameObject:
   m_ObjectHideFlags: 0
@@ -773,7 +812,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1512407006, guid: d501f1ef3351a4a4c973a99784c6fffa, type: 3}
+  m_Sprite: {fileID: 1739785249, guid: 7f4577c17bfc43c4981801559749b168, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

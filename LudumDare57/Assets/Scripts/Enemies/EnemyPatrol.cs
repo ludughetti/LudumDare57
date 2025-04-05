@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(EnemySlide))]
 public class EnemyPatrol : MonoBehaviour
 {
     [Header("References")]
@@ -17,20 +18,34 @@ public class EnemyPatrol : MonoBehaviour
     [SerializeField] private float chaseDuration = 3f;
     [SerializeField] private LayerMask playerLayer;
 
+    [Header("Combat Settings")]
+    [SerializeField] private float attackDistance = 1.5f;
+
     private Rigidbody2D _rigidbody;
+    private EnemySlide _slide;
+
     private Transform _playerTarget;
     private int _currentWaypointIndex = 0;
+
     private bool _isChasing = false;
+    private bool _isWaitingToPatrol = false;
+    private bool _isAttacking = false;
+
     private Coroutine _stopChaseCoroutine;
 
     public event Action<EnemyStates> OnAction;
     public event Action<EnemyConfig> OnViewSetup;
+    public event Action<Vector2> OnFaceDirection;
+
 
     public Rigidbody2D Rigidbody => _rigidbody;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+        _slide = GetComponent<EnemySlide>();
+
+        _slide.Setup(_rigidbody);
     }
 
     private void Start()
@@ -38,61 +53,92 @@ public class EnemyPatrol : MonoBehaviour
         OnViewSetup?.Invoke(config);
         OnAction?.Invoke(EnemyStates.WALK);
     }
-
     private void FixedUpdate()
     {
+        if (_isAttacking) return;
+
         if (_isChasing && _playerTarget != null)
-            MoveTowards(_playerTarget.position, chaseSpeed);
-
-        else if (waypoints.Length > 0)
-            Patrol();
-    }
-
-    private void Patrol()
-    {
-        Transform targetWaypoint = waypoints[_currentWaypointIndex];
-        MoveTowards(targetWaypoint.position, patrolSpeed);
-
-        float distance = Vector2.Distance(transform.position, targetWaypoint.position);
-        if (distance < 0.1f)
         {
-            _currentWaypointIndex = (_currentWaypointIndex + 1) % waypoints.Length;
-        }
-    }
+            float distance = Vector2.Distance(transform.position, _playerTarget.position);
 
-    private void MoveTowards(Vector2 target, float speed)
-    {
-        Vector2 direction = (target - (Vector2)transform.position).normalized;
-        _rigidbody.velocity = direction * speed;
+            if (distance <= attackDistance) TryAttackTarget();
+            else MoveTowards(_playerTarget.position, chaseSpeed);
+        }
+
+        else if (!_isWaitingToPatrol && waypoints.Length > 0)
+            Patrol();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (IsPlayer(other))
         {
+            if (_stopChaseCoroutine != null)
+                StopCoroutine(_stopChaseCoroutine);
+
             _playerTarget = other.transform;
 
             _isChasing = true;
-            OnAction?.Invoke(EnemyStates.WALK);
+            _isWaitingToPatrol = true;
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
+        if (!enabled) return;
         if (IsPlayer(other))
-        {
-            _playerTarget = other.transform;
-
-            if (_stopChaseCoroutine != null)
-                StopCoroutine(_stopChaseCoroutine);
-
             _stopChaseCoroutine = StartCoroutine(StopChaseCoroutine());
-        }
     }
 
-    private bool IsPlayer(Collider2D collider)
+    private void Patrol()
     {
-        return ((1 << collider.gameObject.layer) & playerLayer) != 0;
+        StartCoroutine(PatrolRoutine());
+    }
+
+    private IEnumerator PatrolRoutine()
+    {
+        _isWaitingToPatrol = true;
+
+        Transform targetWaypoint = waypoints[_currentWaypointIndex];
+        MoveTowards(targetWaypoint.position, patrolSpeed);
+
+        while (Vector2.Distance(transform.position, targetWaypoint.position) > 0.1f)
+            yield return null;
+
+        _currentWaypointIndex = (_currentWaypointIndex + 1) % waypoints.Length;
+
+        _slide.OnSlideComplete += HandlePatrolSlideComplete;
+        _slide.Slide(_rigidbody.velocity);
+        OnAction?.Invoke(EnemyStates.IDLE);
+    }
+
+    private void MoveTowards(Vector2 target, float speed, bool isChasing = false)
+    {
+        OnFaceDirection?.Invoke(target);
+
+        Vector2 direction = (target - (Vector2)transform.position).normalized;
+        _rigidbody.velocity = direction * speed;
+    }
+
+    private void TryAttackTarget()
+    {
+        _isAttacking = true;
+
+        OnFaceDirection?.Invoke(_playerTarget.position);
+        OnAction?.Invoke(EnemyStates.IDLE);
+
+        _slide.OnSlideComplete += HandleAttackSlideComplete;
+        _slide.Slide(_rigidbody.velocity);
+
+        float distance = Vector2.Distance(transform.position, _playerTarget.position);
+
+        if (_playerTarget != null && distance <= attackDistance)
+        {
+            if (_playerTarget.TryGetComponent<IAttackable>(out var attackable))
+                attackable.TakeDamage();
+
+            OnAction?.Invoke(EnemyStates.ATTACK);
+        }
     }
 
     private IEnumerator StopChaseCoroutine()
@@ -100,8 +146,41 @@ public class EnemyPatrol : MonoBehaviour
         yield return new WaitForSeconds(chaseDuration);
 
         _isChasing = false;
+
         _playerTarget = null;
-        _rigidbody.velocity = Vector2.zero;
+
+        _slide.OnSlideComplete += HandleReturnFromChase;
+        _slide.Slide(_rigidbody.velocity);
+    }
+
+    private void HandlePatrolSlideComplete()
+    {
+        _slide.OnSlideComplete -= HandlePatrolSlideComplete;
+        _isWaitingToPatrol = false;
+
         OnAction?.Invoke(EnemyStates.WALK);
+    }
+
+    private void HandleReturnFromChase()
+    {
+        _slide.OnSlideComplete -= HandleReturnFromChase;
+
+        _isWaitingToPatrol = false;
+        OnAction?.Invoke(EnemyStates.WALK);
+
+        Patrol();
+    }
+
+    private void HandleAttackSlideComplete()
+    {
+        _slide.OnSlideComplete -= HandleAttackSlideComplete;
+
+        _isAttacking = false;
+        OnAction?.Invoke(EnemyStates.WALK);
+    }
+
+    private bool IsPlayer(Collider2D collider)
+    {
+        return ((1 << collider.gameObject.layer) & playerLayer) != 0;
     }
 }

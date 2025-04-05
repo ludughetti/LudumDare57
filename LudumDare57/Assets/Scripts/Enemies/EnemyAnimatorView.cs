@@ -26,23 +26,17 @@ public class EnemyAnimatorView : MonoBehaviour
     {
         enemy.OnViewSetup += HandleAnimationConfig;
         enemy.OnAction += HandleActionChange;
+        enemy.OnFaceDirection += HandleFacing;
+
     }
 
     private void OnDisable()
     {
         enemy.OnViewSetup -= HandleAnimationConfig;
         enemy.OnAction -= HandleActionChange;
+        enemy.OnFaceDirection -= HandleFacing;
+
     }
-
-    private void Update()
-    {
-        Vector2 velocity = enemy.Rigidbody.velocity;
-        //_animator.SetFloat(horSpeedParameter, Mathf.Abs(velocity.x));
-
-        if (velocity.x != 0)
-            _spriteRenderer.flipX = velocity.x < 0f;
-    }
-
 
     private void HandleAnimationConfig(EnemyConfig config)
     {
@@ -53,10 +47,14 @@ public class EnemyAnimatorView : MonoBehaviour
             Debug.LogWarning("EnemyConfig has no AnimatorOverrideController assigned.");
     }
 
-
-    private void HandleActionChange(EnemyStates enemyState)
+    private void HandleFacing(Vector2 targetPosition)
     {
-        /*
+        Vector2 direction = targetPosition - (Vector2)transform.position;
+        if (direction.x != 0)
+            _spriteRenderer.flipX = direction.x < 0f;
+    }
+    private void HandleActionChange(EnemyStates enemyState)
+    {      
         switch (enemyState)
         {
             case EnemyStates.IDLE:
@@ -66,16 +64,15 @@ public class EnemyAnimatorView : MonoBehaviour
                 _animator.SetFloat(horSpeedParameter, 1f);
                 break;
             case EnemyStates.DEATH:
-                _animator.SetTrigger("death");
+                _animator.SetTrigger(deathTriggerParameter);
                 break;
             case EnemyStates.HURT:
-                _animator.SetTrigger("hurt");
+                _animator.SetTrigger(hurtTriggerParameter);
                 break;
             case EnemyStates.ATTACK:
                 _animator.SetTrigger(attackTriggerParameter);
                 break;
 
         }
-        */
     }
 }
