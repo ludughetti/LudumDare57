@@ -46,6 +46,17 @@ public class PlayerController : MonoBehaviour
         transform.position += (Vector3)(_currentDirection * _currentSpeed * Time.deltaTime);
     }
 
+    [ContextMenu("Add Up Impulse")]
+    private void AddUpImpulseContextMenu()
+    {
+        AddUpImpulse(2f);
+    }
+
+    public void AddUpImpulse(float movementToAdd)
+    {
+        _currentDirection += Vector2.up * movementToAdd;
+    }
+
     private void HandleMovement(Vector2 newDirection)
     {
         if (!_canMove)
