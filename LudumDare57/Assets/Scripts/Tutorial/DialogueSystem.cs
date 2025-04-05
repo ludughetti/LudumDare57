@@ -28,6 +28,7 @@ public class DialogueSystem : MonoBehaviour
 
     private void OnEnable()
     {
+        _currentLineIndex = 0;
         ShowNextLine();
 
         _input.OnClickEvent += OnUserClick;
@@ -57,7 +58,6 @@ public class DialogueSystem : MonoBehaviour
             else
             {
                 DialogueEnd?.Invoke();
-                _dialogueText.text = "GOOD LUCK! Click on play button to continue!";
             }
         }
     }

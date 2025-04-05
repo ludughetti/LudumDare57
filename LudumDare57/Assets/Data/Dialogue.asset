@@ -28,3 +28,5 @@ MonoBehaviour:
       give you oxygen! And some bubbles can give you an impulse!"
   - character: Mermaid
     message: Just be careful... some sea creatures can hurt you
+  - character: Mermaid
+    message: GOOD LUCK! Click on play button to continue!
