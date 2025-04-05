@@ -1273,6 +1273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2db6abed5849e14893bc63c67e029e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _dialogueSystem: {fileID: 0}
   playId: {fileID: 11400000, guid: 65a4ab127fc1d80488db1e5c4bee73d1, type: 2}
   exitId: {fileID: 11400000, guid: d4681790d59cb374e96a75d9f25f235c, type: 2}
 --- !u!114 &657844917
@@ -1287,7 +1288,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b72469758dc77b4a94104b5366d58ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerBaseMovSpeed: 1
+  _playerBaseMovSpeed: 3.5
+  _playerAcceleration: 5
+  _sinkSpeed: 1
+  _waterFriction: 0.5
+  VerticalUpModifier: 0.5
   PlayerSkillAvailableUponStart: 1
 --- !u!4 &657844918
 Transform:
@@ -1425,7 +1430,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: add8ab6d425a98148a8b920f10936133, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameManager: {fileID: 657844916}
   _player: {fileID: 0}
 --- !u!1 &798926689
 GameObject:
