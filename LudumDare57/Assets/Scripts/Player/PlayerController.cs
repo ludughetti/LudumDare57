@@ -10,21 +10,25 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameplayConfigs _gameplayConfigs;
     [SerializeField] private InputHandler _inputHandler;
     [SerializeField] private OxigenLogic _oxigenLogic;
+    [SerializeField] private Health _health;
     [Header("Parameters")]
     [SerializeField] private float _timeToDead = 0.5f;
     [SerializeField] private bool _enableLog = true;
 
     private Vector2 _currentDirection = Vector2.zero;
     private Vector2 _currentInput = Vector2.zero;
+
     private float _currentSpeed = 0f;
     private bool _isMoving = false;
     private bool _canMove = true;
     private bool _isImpulsed = false;
+    private bool _isDiying = false;
 
     private Coroutine _movementCoroutine;
 
     public Vector2 CurrentDirection {  get { return _currentDirection; } }
 
+    public Action IsDamagedEvent;
     public Action<bool> IsMovingEvent;
     public Action DeadEvent;
     public Action GameLost;
@@ -34,6 +38,8 @@ public class PlayerController : MonoBehaviour
         _inputHandler.MovementEvent += HandleMovement;
         _inputHandler.StopMovementEvent += StopMovement;
         _oxigenLogic.AllOxigenLostEvent += HandleDead;
+        _health.IsDeadEvent += HandleDead;
+        _health.OnHealthChange += (int temp) => IsDamagedEvent?.Invoke(); 
     }
 
     private void OnDisable()
@@ -41,6 +47,8 @@ public class PlayerController : MonoBehaviour
         _inputHandler.MovementEvent -= HandleMovement;
         _inputHandler.StopMovementEvent -= StopMovement;
         _oxigenLogic.AllOxigenLostEvent -= HandleDead;
+        _health.IsDeadEvent -= HandleDead;
+        _health.OnHealthChange -= (int temp) => IsDamagedEvent?.Invoke();
     }
 
     private void Update()
@@ -108,9 +116,11 @@ public class PlayerController : MonoBehaviour
                 _currentSpeed = Mathf.Min(_currentSpeed, _gameplayConfigs.PlayerBaseMovSpeed);
             }
 
+            _currentDirection.x = newDirection.x;
+
             if (!_isImpulsed)
             {
-                _currentDirection = newDirection;
+                _currentDirection.y = newDirection.y;
                 _currentDirection.y = Mathf.Lerp(_currentDirection.y, -1f, Time.deltaTime * _gameplayConfigs.SinkSpeed);
             }
         }
@@ -169,6 +179,10 @@ public class PlayerController : MonoBehaviour
 
     private void HandleDead()
     {
+        if (_isDiying)
+            return;
+
+        _isDiying = true;
         _canMove = false;
         DeadEvent?.Invoke();
         StopAllCoroutines();
