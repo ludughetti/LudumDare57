@@ -13,6 +13,7 @@ public struct DialogueStruct
 
 public class DialogueSystem : MonoBehaviour
 {
+    [SerializeField] private InputHandler _input;
     [SerializeField] private GameObject _ducky;
     [SerializeField] private GameObject _mermaid;
     [SerializeField] private TextMeshProUGUI _dialogueText;
@@ -23,9 +24,18 @@ public class DialogueSystem : MonoBehaviour
     private bool _isTyping = false;
     private Coroutine _typingCoroutine;
 
+    public Action DialogueEnd;
+
     private void OnEnable()
     {
         ShowNextLine();
+
+        _input.OnClickEvent += OnUserClick;
+    }
+
+    private void OnDisable()
+    {
+        _input.OnClickEvent -= OnUserClick;
     }
 
     [ContextMenu("Next")]
@@ -46,7 +56,8 @@ public class DialogueSystem : MonoBehaviour
             }
             else
             {
-                _dialogueText.text = "";
+                DialogueEnd?.Invoke();
+                _dialogueText.text = "GOOD LUCK! Click on play button to continue!";
             }
         }
     }
