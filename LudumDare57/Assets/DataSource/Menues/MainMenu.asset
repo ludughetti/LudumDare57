@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35d97fa8c5f78184d89f543af30eedc3, type: 3}
   m_Name: MainMenu
   m_EditorClassIdentifier: 
-  _menuId: MainMenu
+  _menuId: Main Menu
