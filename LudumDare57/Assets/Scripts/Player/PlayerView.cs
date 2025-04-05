@@ -7,15 +7,18 @@ public class PlayerView : MonoBehaviour
     [SerializeField] private string _xParameter = "X";
     [SerializeField] private string _yParameter = "Y";
     [SerializeField] private string _isMovingParameter = "IsMoving";
+    [SerializeField] private string _isDeadParameter = "IsDead";
 
     private void OnEnable()
     {
         _player.IsMovingEvent += HandleIsMoving;
+        _player.DeadEvent += HandleIsDead;
     }
 
     private void OnDisable()
     {
         _player.IsMovingEvent -= HandleIsMoving;
+        _player.DeadEvent -= HandleIsDead;
     }
 
     private void Update()
@@ -27,5 +30,10 @@ public class PlayerView : MonoBehaviour
     private void HandleIsMoving(bool isMoving)
     {
         _controller.SetBool(_isMovingParameter,isMoving);
+    }
+
+    private void HandleIsDead()
+    {
+        _controller.SetBool(_isDeadParameter, true);
     }
 }

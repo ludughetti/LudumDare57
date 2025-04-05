@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5508272554564940478}
   - component: {fileID: 961780054334599504}
   - component: {fileID: 6672494346948025070}
+  - component: {fileID: -8887962350811395785}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -49,6 +50,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gameplayConfigs: {fileID: 11400000, guid: 2e42ac697ed90484cb4e757b09964244, type: 2}
   _inputHandler: {fileID: 0}
+  _oxigenLogic: {fileID: -8887962350811395785}
+  _timeToDead: 0.5
   _enableLog: 0
 --- !u!50 &961780054334599504
 Rigidbody2D:
@@ -122,6 +125,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-8887962350811395785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5917648525075696190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44d097290816f1f4391127aad1f339e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxOxigen: 100
+  _oxigenLostPerSecond: 1
 --- !u!1 &6440071884712141000
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,3 +263,4 @@ MonoBehaviour:
   _xParameter: X
   _yParameter: Y
   _isMovingParameter: IsMoving
+  _isDeadParameter: IsDead

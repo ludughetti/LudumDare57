@@ -6,31 +6,39 @@ using UnityEngine.Windows;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Managers")]
     [SerializeField] private GameplayConfigs _gameplayConfigs;
     [SerializeField] private InputHandler _inputHandler;
-
+    [SerializeField] private OxigenLogic _oxigenLogic;
+    [Header("Parameters")]
+    [SerializeField] private float _timeToDead = 0.5f;
     [SerializeField] private bool _enableLog = true;
 
     private Vector2 _currentDirection = Vector2.zero;
     private float _currentSpeed = 0f;
     private bool _isMoving = false;
+    private bool _canMove = true;
 
     private Coroutine _movementCoroutine;
 
     public Vector2 CurrentDirection {  get { return _currentDirection; } }
 
     public Action<bool> IsMovingEvent;
+    public Action DeadEvent;
+    public Action GameLost;
 
     private void OnEnable()
     {
         _inputHandler.MovementEvent += HandleMovement;
         _inputHandler.StopMovementEvent += StopMovement;
+        _oxigenLogic.AllOxigenLostEvent += HandleDead;
     }
 
     private void OnDisable()
     {
         _inputHandler.MovementEvent -= HandleMovement;
         _inputHandler.StopMovementEvent -= StopMovement;
+        _oxigenLogic.AllOxigenLostEvent -= HandleDead;
     }
 
     private void Update()
@@ -40,6 +48,9 @@ public class PlayerController : MonoBehaviour
 
     private void HandleMovement(Vector2 newDirection)
     {
+        if (!_canMove)
+            return;
+
         IsMovingEvent?.Invoke(true);
         _isMoving = true;
         StartNewMovementCoroutine(SmoothMovement(newDirection));
@@ -73,13 +84,18 @@ public class PlayerController : MonoBehaviour
 
             _currentDirection = newDirection;
 
-            if (_currentDirection.y > 0.1f)
+            if (newDirection.y > 0.1f)
             {
-                _currentDirection.y -= _currentDirection.y / 2;
+                _currentDirection.y = newDirection.y * _gameplayConfigs.VerticalUpModifier;
             }
-
-            if (_enableLog)
-                Debug.Log($"Speed: {_currentSpeed}, Dir: {_currentDirection}, Dot: {dot}");
+            else if (newDirection.y < -0.1f)
+            {
+                _currentDirection.y = newDirection.y;
+            }
+            else
+            {
+                _currentDirection.y = Mathf.Lerp(_currentDirection.y, -1f, Time.deltaTime * _gameplayConfigs.SinkSpeed);
+            }
         }
     }
 
@@ -132,5 +148,20 @@ public class PlayerController : MonoBehaviour
             StopCoroutine(_movementCoroutine);
 
         _movementCoroutine = StartCoroutine(routine);
+    }
+
+    private void HandleDead()
+    {
+        _canMove = false;
+        DeadEvent?.Invoke();
+        StopAllCoroutines();
+        StopMovement();
+        StartCoroutine(DeadLogic());
+    }
+
+    private IEnumerator DeadLogic()
+    {
+        yield return new WaitForSeconds(_timeToDead);
+        GameLost?.Invoke();
     }
 }

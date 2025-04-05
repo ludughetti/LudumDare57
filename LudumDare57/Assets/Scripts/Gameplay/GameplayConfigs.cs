@@ -7,6 +7,7 @@ public class GameplayConfigs : ScriptableObject
     [SerializeField] private float _playerAcceleration = 5f;
     [SerializeField] private float _sinkSpeed = 1;
     [SerializeField] private float _waterFriction = 0.5f;
+    [SerializeField][Range(0f, 1f)] public float VerticalUpModifier = 0.5f;
     [SerializeField] private bool PlayerSkillAvailableUponStart;
 
     public float PlayerBaseMovSpeed { get { return _playerBaseMovSpeed; } }
