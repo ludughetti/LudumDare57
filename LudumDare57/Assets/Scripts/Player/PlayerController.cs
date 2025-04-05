@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,8 @@ public class PlayerController : MonoBehaviour
 
     public Vector2 CurrentDirection {  get { return _currentDirection; } }
 
+    public Action<bool> IsMovingEvent;
+
     private void OnEnable()
     {
         _inputHandler.MovementEvent += HandleMovement;
@@ -37,6 +40,7 @@ public class PlayerController : MonoBehaviour
 
     private void HandleMovement(Vector2 newDirection)
     {
+        IsMovingEvent?.Invoke(true);
         _isMoving = true;
         StartNewMovementCoroutine(SmoothMovement(newDirection));
     }
@@ -101,6 +105,7 @@ public class PlayerController : MonoBehaviour
         if (!_isMoving)
         {
             _movementCoroutine = StartCoroutine(SinkLogic(_currentSpeed));
+            IsMovingEvent?.Invoke(false);
         }
     }
 
