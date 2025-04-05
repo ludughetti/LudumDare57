@@ -2,17 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyConfig : MonoBehaviour
+[CreateAssetMenu(menuName = "Config/Enemy", fileName = "EnemyCfg_", order = 0)]
+public class EnemyConfig : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [field: SerializeField] public string ID { get; private set; }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [field: SerializeField] public AnimatorOverrideController AnimatorOverrideController { get; private set; }
 }
