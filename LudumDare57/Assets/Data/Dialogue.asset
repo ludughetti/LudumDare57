@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5c187eec293c8b4ea7476112828dfd0, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  _dialogue:
+  - character: Ducky
+    message: ... Where am i?
+  - character: Mermaid
+    message: Oh! you finally wake up!!
+  - character: Ducky
+    message: A mermaid!? WHERE AM I?!
+  - character: Mermaid
+    message: You're down in the depths of the ocean, but don't be afraid!
+  - character: Ducky
+    message: Don't be afraid? I can't live without oxygen
+  - character: Mermaid
+    message: "You can get it from the shells! When they\u2019re open, the bubbles
+      give you oxygen! And some bubbles can give you an impulse!"
+  - character: Mermaid
+    message: Just be careful... some sea creatures can hurt you
