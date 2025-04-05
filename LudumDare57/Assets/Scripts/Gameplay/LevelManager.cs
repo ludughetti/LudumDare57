@@ -3,31 +3,35 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField] private GameManager _gameManager;
     [SerializeField] private PlayerController _player;
 
     public Action<bool> triggerEndgame;
 
     private void OnEnable()
     {
-        _gameManager.StartGame += HandleStartGame;
-        _gameManager.EndGame += HandlePlayerDead;
+        _player.GameLost += HandlePlayerDead;
     }
 
     private void OnDisable()
     {
-        _gameManager.StartGame -= HandleStartGame;
-        _gameManager.EndGame -= HandlePlayerDead;
+        _player.GameLost -= HandlePlayerDead;
     }
 
-    private void HandleStartGame()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if (collision.TryGetComponent(out PlayerController player))
+            HandlePlayerWin();
     }
 
     private void HandlePlayerDead()
     {
         Debug.Log("Player lost!");
         triggerEndgame?.Invoke(false);
+    }
+
+    private void HandlePlayerWin()
+    {
+        Debug.Log("Player Win!");
+        triggerEndgame?.Invoke(true);
     }
 }
