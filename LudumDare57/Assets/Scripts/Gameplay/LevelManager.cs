@@ -9,12 +9,14 @@ public class LevelManager : MonoBehaviour
 
     private void OnEnable()
     {
-        _player.GameLost += HandlePlayerDead;
+        if(_player != null)
+            _player.GameLost += HandlePlayerDead;
     }
 
     private void OnDisable()
     {
-        _player.GameLost -= HandlePlayerDead;
+        if (_player != null)
+            _player.GameLost -= HandlePlayerDead;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
