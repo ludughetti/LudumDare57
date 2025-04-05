@@ -22,11 +22,11 @@ MonoBehaviour:
   - character: Mermaid
     message: You're down in the depths of the ocean, but don't be afraid!
   - character: Ducky
-    message: Don't be afraid? I can't live without oxygen
+    message: Don't be afraid? I can't live without oxygen!
   - character: Mermaid
-    message: "You can get it from the shells! When they\u2019re open, the bubbles
-      give you oxygen! And some bubbles can give you an impulse!"
+    message: You can get it from the shells! When they're open, the bubbles give
+      you oxygen! And some bubbles can give you an impulse!
   - character: Mermaid
-    message: Just be careful... some sea creatures can hurt you
+    message: Just be careful... Some sea creatures can hurt you...
   - character: Mermaid
     message: GOOD LUCK! Click on play button to continue!
