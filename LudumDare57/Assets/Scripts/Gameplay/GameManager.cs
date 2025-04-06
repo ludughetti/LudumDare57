@@ -11,10 +11,10 @@ public class GameManager : MonoBehaviour
 
     public void HandleMenuChange(string id)
     {
-        if (id == playId.name)
+        if (id == playId.menuId)
             TriggerStartGame();
 
-        if (id == exitId.name)
+        if (id == exitId.menuId)
         {
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     [ContextMenu("Start")]
     private void TriggerStartGame()
     {
+        Debug.Log("StartGame");
         StartGame?.Invoke();
     }
 }

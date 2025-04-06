@@ -34380,6 +34380,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8887962350811395785, guid: 3bed43a1699506841a89aa0825c41941, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 274585628904234715, guid: 3bed43a1699506841a89aa0825c41941, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 961780054334599504, guid: 3bed43a1699506841a89aa0825c41941, type: 3}
       propertyPath: m_BodyType
       value: 0
@@ -34396,6 +34404,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 5508272554564940478, guid: 3bed43a1699506841a89aa0825c41941, type: 3}
+      propertyPath: _gameManager
+      value: 
+      objectReference: {fileID: 657844916}
     - target: {fileID: 5508272554564940478, guid: 3bed43a1699506841a89aa0825c41941, type: 3}
       propertyPath: _inputHandler
       value: 
