@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -21,14 +22,17 @@ public class PlayerController : MonoBehaviour
     private float _currentSpeed = 0f;
     private bool _isMoving = false;
     private bool _canMove = true;
-    private bool _isImpulsed = false;
     private bool _isDying = false;
+
+    private Vector2 _externalForce = Vector2.zero;
+    private bool _inImpulseZone = false;
+    private bool _isImpulsed = false;
 
     private bool _gameStarted = false;
 
     private Coroutine _movementCoroutine;
 
-    public Vector2 CurrentDirection {  get { return _currentDirection; } }
+    public Vector2 CurrentDirection { get { return _currentDirection; } }
 
     public Action IsDamagedEvent;
     public Action<bool> IsMovingEvent;
@@ -61,24 +65,24 @@ public class PlayerController : MonoBehaviour
         if (!_gameStarted)
             return;
 
-        transform.position += (Vector3)(_currentDirection * _currentSpeed * Time.deltaTime);
+        Vector3 movement = _currentDirection * _currentSpeed;
+
+        if (_inImpulseZone)
+            movement += (Vector3)Vector2.Lerp(_externalForce * 0.5f, _externalForce, Time.deltaTime * 2f);
+
+        transform.position += movement * Time.deltaTime;
     }
 
-    [ContextMenu("Add Up Impulse")]
-    private void AddUpImpulseContextMenu()
+    public void SetExternalForce(Vector2 force)
     {
-        AddUpImpulse(2f);
+        _externalForce = force;
+        _inImpulseZone = true;
     }
 
-    public void AddUpImpulse(float movementToAdd)
+    public void ClearExternalForce()
     {
-        _isImpulsed = true;
-        _currentDirection.y += movementToAdd;
-    }
-
-    public void StopImpulse()
-    {
-        _isImpulsed = false;
+        _externalForce = Vector2.zero;
+        _inImpulseZone = false;
     }
 
     private void HandleMovement(Vector2 newDirection)

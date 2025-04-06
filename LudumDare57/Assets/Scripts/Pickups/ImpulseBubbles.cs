@@ -17,23 +17,23 @@ public class ImpulseBubbles : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!_hasJustEntered && collision.TryGetComponent(out PlayerController player))
-        {
-            player.AddUpImpulse(_firtsImpulse);
-            StartCoroutine(ResetEnterFlag());
-        }
-    }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
         if (collision.TryGetComponent(out PlayerController player))
-            player.AddUpImpulse(_impulse * Time.deltaTime);
+        {
+            player.SetExternalForce(transform.up * _impulse);
+            if (!_hasJustEntered)
+            {
+                player.SetExternalForce(transform.up * _firtsImpulse);
+                StartCoroutine(ResetEnterFlag());
+            }
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.TryGetComponent(out PlayerController player))
-            player.StopImpulse();
+        {
+            player.ClearExternalForce();
+        }
     }
 
     private IEnumerator ResetEnterFlag()
