@@ -7,6 +7,7 @@ namespace Audio
     public class AudioManager : MonoBehaviour
     {
         [Header("References")]
+        [SerializeField] private AudioDataSource selfDataSource;
         [SerializeField] private LevelManager levelManager;
 
         [Header("Audio Mixer")]
@@ -32,20 +33,18 @@ namespace Audio
 
         private void Awake()
         {
-            float masterVol = PlayerPrefs.GetFloat(masterVolume, 1);
-            float musicVol = PlayerPrefs.GetFloat(musicVolume, 1);
-            float sfxVol = PlayerPrefs.GetFloat(sfxVolume, 1);
-
-            SetMasterVolume(masterVol);
-            SetMusicVolume(musicVol);
-            SetSFXVolume(sfxVol);
-
-            PlayAudio(mainMusic);
+            selfDataSource.DataInstance = this;
         }
 
         private void OnEnable()
         {
             levelManager.triggerEndgame += HandleEndGameSFX;
+
+            SetMasterVolume(1f);
+            SetMusicVolume(1f);
+            SetSFXVolume(1f);
+
+            PlayAudio(mainMusic);
         }
 
         private void OnDisable()

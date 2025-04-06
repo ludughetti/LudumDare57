@@ -9,8 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35d97fa8c5f78184d89f543af30eedc3, type: 3}
-  m_Name: Settings
+  m_Script: {fileID: 11500000, guid: c64cc56f2e31b3a438f94d94795747aa, type: 3}
+  m_Name: AudioManagerSource
   m_EditorClassIdentifier: 
-  _isPauseMenu: 0
-  _menuId: Settings

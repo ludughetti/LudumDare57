@@ -33,10 +33,6 @@ namespace UI
 
         private void Start()
         {
-            masterSlider.value = PlayerPrefs.GetFloat(_masterVolume, 1);
-            musicSlider.value = PlayerPrefs.GetFloat(_musicVolume, 1);
-            sfxSlider.value = PlayerPrefs.GetFloat(_sfxVolume, 1);
-
             masterSlider.onValueChanged.AddListener(UpdateMasterVolume);
             musicSlider.onValueChanged.AddListener(UpdateMusicVolume);
             sfxSlider.onValueChanged.AddListener(UpdateSFXVolume);
@@ -45,19 +41,16 @@ namespace UI
         private void UpdateMasterVolume(float value)
         {
             audioManager.SetMasterVolume(value);
-            PlayerPrefs.SetFloat(_masterVolume, value);
         }
 
         private void UpdateMusicVolume(float value)
         {
             audioManager.SetMusicVolume(value);
-            PlayerPrefs.SetFloat(_musicVolume, value);
         }
 
         private void UpdateSFXVolume(float value)
         {
             audioManager.SetSFXVolume(value);
-            PlayerPrefs.SetFloat(_sfxVolume, value);
         }
 
         [Serializable]

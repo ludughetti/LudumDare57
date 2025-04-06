@@ -2390,7 +2390,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 65a4ab127fc1d80488db1e5c4bee73d1, type: 2}
   - {fileID: 11400000, guid: ee78e14da5b08f9498d7f6f2d66a857f, type: 2}
   _gameManager: {fileID: 657844916}
+  inputHandler: {fileID: 678264519}
   _gameController: {fileID: 712265424}
+  audioDataSource: {fileID: 11400000, guid: 061c4806f3994c44f8413dedb4fcd2a5, type: 2}
+  buttonClickAudio: {fileID: 11400000, guid: d6a6172a29499e74ba9531ef6c02bfb6, type: 2}
   _endScreenId: {fileID: 11400000, guid: ee78e14da5b08f9498d7f6f2d66a857f, type: 2}
 --- !u!1 &158084359
 GameObject:
@@ -4699,6 +4702,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f3dffa4b4187ea449ec038de271dc6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selfDataSource: {fileID: 11400000, guid: 061c4806f3994c44f8413dedb4fcd2a5, type: 2}
   levelManager: {fileID: 712265424}
   mainMixer: {fileID: 24100000, guid: fb755286d699b8e4c8bf82e0c2cfbdbd, type: 2}
   musicGroup: {fileID: -7307771435943032981, guid: fb755286d699b8e4c8bf82e0c2cfbdbd, type: 2}
