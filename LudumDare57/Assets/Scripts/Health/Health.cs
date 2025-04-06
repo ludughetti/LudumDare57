@@ -21,23 +21,26 @@ public class Health : MonoBehaviour, IAttackable
         IsAlive = true;
     }
 
-    private void Start()
-    {
-        MaxLifeEvent?.Invoke(_maxLife);
-    }
-
     public void TakeDamage()
     {
         if (!IsAlive)
             return;
+
         _currentHealth--;
 
-        if (_currentHealth < 0)
+        if (_currentHealth <= 0)
         {
             IsAlive = false;
             IsDeadEvent?.Invoke();
         }
 
         OnHealthChange?.Invoke(_currentHealth);
+    }
+
+    public void ResetHP()
+    {
+        _currentHealth = _maxLife;
+        IsAlive = true;
+        MaxLifeEvent?.Invoke(_maxLife);
     }
 }

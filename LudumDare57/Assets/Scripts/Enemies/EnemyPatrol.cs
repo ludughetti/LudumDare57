@@ -215,5 +215,9 @@ public class EnemyPatrol : MonoBehaviour
     private void HandleGameStarted()
     {
         _gameStarted = true;
+        _playerIsDead = false;
+        _isChasing = false;
+        _isWaitingToPatrol = false;
+        _isAttacking = false;
     }
 }

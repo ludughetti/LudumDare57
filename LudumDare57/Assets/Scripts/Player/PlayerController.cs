@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Windows;
 
 public class PlayerController : MonoBehaviour
 {
@@ -15,6 +13,7 @@ public class PlayerController : MonoBehaviour
     [Header("Parameters")]
     [SerializeField] private float _timeToDead = 0.5f;
     [SerializeField] private bool _enableLog = true;
+    [SerializeField] private Transform _spawnPoint;
 
     private Vector2 _currentDirection = Vector2.zero;
     private Vector2 _currentInput = Vector2.zero;
@@ -23,7 +22,7 @@ public class PlayerController : MonoBehaviour
     private bool _isMoving = false;
     private bool _canMove = true;
     private bool _isImpulsed = false;
-    private bool _isDiying = false;
+    private bool _isDying = false;
 
     private bool _gameStarted = false;
 
@@ -33,6 +32,7 @@ public class PlayerController : MonoBehaviour
 
     public Action IsDamagedEvent;
     public Action<bool> IsMovingEvent;
+    public Action AliveEvent;
     public Action DeadEvent;
     public Action GameLost;
 
@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
         _inputHandler.StopMovementEvent += StopMovement;
         _oxigenLogic.AllOxigenLostEvent += HandleDead;
         _health.IsDeadEvent += HandleDead;
-        _gameManager.StartGame += HandleStartGame;
+        _gameManager.StartGame += ResetPlayer;
         _health.OnHealthChange += (int temp) => IsDamagedEvent?.Invoke(); 
     }
 
@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
         _inputHandler.StopMovementEvent -= StopMovement;
         _oxigenLogic.AllOxigenLostEvent -= HandleDead;
         _health.IsDeadEvent -= HandleDead;
-        _gameManager.StartGame -= HandleStartGame;
+        _gameManager.StartGame -= ResetPlayer;
         _health.OnHealthChange -= (int temp) => IsDamagedEvent?.Invoke();
     }
 
@@ -187,10 +187,10 @@ public class PlayerController : MonoBehaviour
 
     private void HandleDead()
     {
-        if (_isDiying)
+        if (_isDying)
             return;
 
-        _isDiying = true;
+        _isDying = true;
         _canMove = false;
         DeadEvent?.Invoke();
         StopAllCoroutines();
@@ -204,10 +204,19 @@ public class PlayerController : MonoBehaviour
         GameLost?.Invoke();
     }
 
-    private void HandleStartGame()
+    private void ResetPlayer()
     {
+        gameObject.transform.position = _spawnPoint.position;
         _gameStarted = true;
-        _oxigenLogic.enabled = true;
         _health.enabled = true;
+        _health.ResetHP();
+        AliveEvent?.Invoke();
+        _oxigenLogic.enabled = true;
+        _oxigenLogic.ResetOxygen();
+        _canMove = true;
+        _isDying = false;
+        _currentDirection = Vector2.zero;
+        _currentInput = Vector2.zero;
+        _currentSpeed = 0;
     }
 }

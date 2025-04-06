@@ -7,7 +7,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private MenuDataSource exitId;
 
     public event Action StartGame;
-    public event Action EndGame;
 
     public void HandleMenuChange(string id)
     {

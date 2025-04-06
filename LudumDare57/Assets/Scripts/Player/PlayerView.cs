@@ -19,6 +19,7 @@ public class PlayerView : MonoBehaviour
 
     private void OnEnable()
     {
+        _player.AliveEvent += HandleIsAlive;
         _player.IsMovingEvent += HandleIsMoving;
         _player.DeadEvent += HandleIsDead;
         _player.IsDamagedEvent += HandleIsAttacked;
@@ -26,6 +27,7 @@ public class PlayerView : MonoBehaviour
 
     private void OnDisable()
     {
+        _player.AliveEvent -= HandleIsAlive;
         _player.IsMovingEvent -= HandleIsMoving;
         _player.DeadEvent -= HandleIsDead;
         _player.IsDamagedEvent -= HandleIsAttacked;
@@ -50,6 +52,11 @@ public class PlayerView : MonoBehaviour
     private void HandleIsDead()
     {
         _controller.SetBool(_isDeadParameter, true);
+    }
+
+    private void HandleIsAlive()
+    {
+        _controller.SetBool(_isDeadParameter, false);
     }
 
     private void HandleIsAttacked()

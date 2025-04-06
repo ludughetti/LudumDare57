@@ -7,11 +7,21 @@ public class NavigationManager : MonoBehaviour
     [SerializeField] private List<MenuDataSource> _menusWithId;
 
     [SerializeField] private GameManager _gameManager;
-    [SerializeField] private LevelManager _gameController;
+    [SerializeField] private LevelManager _levelManager;
 
     [SerializeField] private MenuDataSource _endScreenId;
 
     private int _currentMenuIndex = 0;
+
+    private void OnEnable()
+    {
+        _levelManager.triggerEndgame += HandleEndgame;
+    }
+
+    private void OnDisable()
+    {
+        _levelManager.triggerEndgame -= HandleEndgame;
+    }
 
     private void Start()
     {
@@ -33,8 +43,6 @@ public class NavigationManager : MonoBehaviour
 
     private void HandleChangeMenu(string id)
     {
-        _gameManager.HandleMenuChange(id);
-
         for (var i = 0; i < _menusWithId.Count; i++)
         {
             var menuWithId = _menusWithId[i];
@@ -46,5 +54,12 @@ public class NavigationManager : MonoBehaviour
                 break;
             }
         }
+
+        _gameManager.HandleMenuChange(id);
+    }
+
+    private void HandleEndgame(bool isWin)
+    {
+        HandleChangeMenu(_endScreenId.name);
     }
 }

@@ -47,4 +47,10 @@ public class OxigenLogic : MonoBehaviour
 
         CurrentAndFullOxigenEvent?.Invoke(_currentOxigen, _maxOxigen);
     }
+
+    public void ResetOxygen()
+    {
+        _currentOxigen = _maxOxigen;
+        CurrentAndFullOxigenEvent?.Invoke(_currentOxigen, _maxOxigen);
+    }
 }
