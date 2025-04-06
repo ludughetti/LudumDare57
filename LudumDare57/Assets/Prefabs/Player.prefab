@@ -80,7 +80,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!61 &6672494346948025070
 BoxCollider2D:
@@ -273,6 +273,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 348ac7e076d337f48a5768d8c8eef399, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _damageColor: {r: 1, g: 0, b: 0, a: 1}
+  _flashDuration: 0.2
   _controller: {fileID: 5882141156708725534}
   _player: {fileID: 5508272554564940478}
   _xParameter: X

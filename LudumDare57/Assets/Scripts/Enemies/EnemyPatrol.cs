@@ -7,6 +7,7 @@ using UnityEngine;
 public class EnemyPatrol : MonoBehaviour
 {
     [Header("References")]
+    [SerializeField] private GameManager gameManager;
     [SerializeField] private EnemyConfig config;
 
     [Header("Patrol Settings")]
@@ -30,6 +31,7 @@ public class EnemyPatrol : MonoBehaviour
     private bool _isChasing = false;
     private bool _isWaitingToPatrol = false;
     private bool _isAttacking = false;
+    private bool _gameStarted = false;
 
     private Coroutine _stopChaseCoroutine;
 
@@ -40,8 +42,22 @@ public class EnemyPatrol : MonoBehaviour
 
     public Rigidbody2D Rigidbody => _rigidbody;
 
+    private void OnEnable()
+    {
+        if(gameManager)
+            gameManager.StartGame += HandleGameStarted;
+    }
+
+    private void OnDisable()
+    {
+        if (gameManager)
+            gameManager.StartGame -= HandleGameStarted;
+    }
+
     private void Awake()
     {
+        if (!gameManager)
+            Debug.LogError($"{name} GAME MANAGER IS NULL");
         _rigidbody = GetComponent<Rigidbody2D>();
         _slide = GetComponent<EnemySlide>();
 
@@ -53,9 +69,10 @@ public class EnemyPatrol : MonoBehaviour
         OnViewSetup?.Invoke(config);
         OnAction?.Invoke(EnemyStates.WALK);
     }
+
     private void FixedUpdate()
     {
-        if (_isAttacking) return;
+        if (_isAttacking || !_gameStarted) return;
 
         if (_isChasing && _playerTarget != null)
         {
@@ -71,6 +88,8 @@ public class EnemyPatrol : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (!_gameStarted)
+            return;
         if (IsPlayer(other))
         {
             if (_stopChaseCoroutine != null)
@@ -85,7 +104,7 @@ public class EnemyPatrol : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (!enabled) return;
+        if (!enabled || !_gameStarted) return;
         if (IsPlayer(other))
             _stopChaseCoroutine = StartCoroutine(StopChaseCoroutine());
     }
@@ -182,5 +201,10 @@ public class EnemyPatrol : MonoBehaviour
     private bool IsPlayer(Collider2D collider)
     {
         return ((1 << collider.gameObject.layer) & playerLayer) != 0;
+    }
+
+    private void HandleGameStarted()
+    {
+        _gameStarted = true;
     }
 }

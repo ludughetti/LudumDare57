@@ -7,6 +7,7 @@ using UnityEngine.Windows;
 public class PlayerController : MonoBehaviour
 {
     [Header("Managers")]
+    [SerializeField] private GameManager _gameManager;
     [SerializeField] private GameplayConfigs _gameplayConfigs;
     [SerializeField] private InputHandler _inputHandler;
     [SerializeField] private OxigenLogic _oxigenLogic;
@@ -24,6 +25,8 @@ public class PlayerController : MonoBehaviour
     private bool _isImpulsed = false;
     private bool _isDiying = false;
 
+    private bool _gameStarted = false;
+
     private Coroutine _movementCoroutine;
 
     public Vector2 CurrentDirection {  get { return _currentDirection; } }
@@ -39,6 +42,7 @@ public class PlayerController : MonoBehaviour
         _inputHandler.StopMovementEvent += StopMovement;
         _oxigenLogic.AllOxigenLostEvent += HandleDead;
         _health.IsDeadEvent += HandleDead;
+        _gameManager.StartGame += HandleStartGame;
         _health.OnHealthChange += (int temp) => IsDamagedEvent?.Invoke(); 
     }
 
@@ -48,11 +52,15 @@ public class PlayerController : MonoBehaviour
         _inputHandler.StopMovementEvent -= StopMovement;
         _oxigenLogic.AllOxigenLostEvent -= HandleDead;
         _health.IsDeadEvent -= HandleDead;
+        _gameManager.StartGame -= HandleStartGame;
         _health.OnHealthChange -= (int temp) => IsDamagedEvent?.Invoke();
     }
 
     private void Update()
     {
+        if (!_gameStarted)
+            return;
+
         transform.position += (Vector3)(_currentDirection * _currentSpeed * Time.deltaTime);
     }
 
@@ -75,7 +83,7 @@ public class PlayerController : MonoBehaviour
 
     private void HandleMovement(Vector2 newDirection)
     {
-        if (!_canMove)
+        if (!_canMove || !_gameStarted)
             return;
 
         _currentInput = newDirection;
@@ -194,5 +202,12 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(_timeToDead);
         GameLost?.Invoke();
+    }
+
+    private void HandleStartGame()
+    {
+        _gameStarted = true;
+        _oxigenLogic.enabled = true;
+        _health.enabled = true;
     }
 }
