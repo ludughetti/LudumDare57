@@ -33,6 +33,8 @@ public class EnemyPatrol : MonoBehaviour
     private bool _isAttacking = false;
     private bool _gameStarted = false;
 
+    private bool _playerIsDead = false;
+
     private Coroutine _stopChaseCoroutine;
 
     public event Action<EnemyStates> OnAction;
@@ -74,7 +76,7 @@ public class EnemyPatrol : MonoBehaviour
     {
         if (_isAttacking || !_gameStarted) return;
 
-        if (_isChasing && _playerTarget != null)
+        if (_isChasing && _playerTarget != null && !_playerIsDead)
         {
             float distance = Vector2.Distance(transform.position, _playerTarget.position);
 
@@ -88,8 +90,8 @@ public class EnemyPatrol : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!_gameStarted)
-            return;
+        if (!_gameStarted || _playerIsDead) return;
+
         if (IsPlayer(other))
         {
             if (_stopChaseCoroutine != null)
@@ -154,7 +156,12 @@ public class EnemyPatrol : MonoBehaviour
         if (_playerTarget != null && distance <= attackDistance)
         {
             if (_playerTarget.TryGetComponent<IAttackable>(out var attackable))
+            {
                 attackable.TakeDamage();
+
+                if (!attackable.IsAlive)
+                    _playerIsDead = true;
+            }
 
             OnAction?.Invoke(EnemyStates.ATTACK);
         }
@@ -195,6 +202,8 @@ public class EnemyPatrol : MonoBehaviour
         _slide.OnSlideComplete -= HandleAttackSlideComplete;
 
         _isAttacking = false;
+        _isWaitingToPatrol = false;
+
         OnAction?.Invoke(EnemyStates.WALK);
     }
 

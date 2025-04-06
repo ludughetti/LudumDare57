@@ -8,15 +8,17 @@ public class Health : MonoBehaviour, IAttackable
     [SerializeField] private int _maxLife = 10;
 
     private int _currentHealth;
-    private bool _isAlive = true;
 
     public Action<int> MaxLifeEvent;
     public Action<int> OnHealthChange;
     public Action IsDeadEvent;
 
+    public bool IsAlive { get; set; }
+
     private void Awake()
     {
         _currentHealth = _maxLife;
+        IsAlive = true;
     }
 
     private void Start()
@@ -26,13 +28,13 @@ public class Health : MonoBehaviour, IAttackable
 
     public void TakeDamage()
     {
-        if (!_isAlive)
+        if (!IsAlive)
             return;
         _currentHealth--;
 
         if (_currentHealth < 0)
         {
-            _isAlive = false;
+            IsAlive = false;
             IsDeadEvent?.Invoke();
         }
 
