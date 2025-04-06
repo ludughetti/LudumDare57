@@ -82,7 +82,7 @@ public class EnemyPatrol : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_isAttacking || !_gameStarted) return;
+        if (_isAttacking) return;
 
         if (_isChasing && _playerTarget != null && !_playerIsDead)
         {
@@ -226,9 +226,10 @@ public class EnemyPatrol : MonoBehaviour
         return ((1 << collider.gameObject.layer) & playerLayer) != 0;
     }
 
-    private void HandleGameStarted()
+    private void HandleGameStarted(bool startGame)
     {
-        _gameStarted = true;
+        _gameStarted = startGame;
+
         _playerIsDead = false;
         _isChasing = false;
         _isWaitingToPatrol = false;

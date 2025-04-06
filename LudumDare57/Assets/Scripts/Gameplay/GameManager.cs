@@ -3,10 +3,22 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private LevelManager levelManager;
+
     [SerializeField] private MenuDataSource playId;
     [SerializeField] private MenuDataSource exitId;
 
-    public event Action StartGame;
+    public event Action<bool> StartGame;
+
+    private void OnEnable()
+    {
+        levelManager.triggerEndgame += TriggerEndGame;
+    }
+
+    private void OnDisable()
+    {
+        levelManager.triggerEndgame -= TriggerEndGame;
+    }
 
     public void HandlePauseGame(bool isGamePaused)
     {
@@ -35,6 +47,11 @@ public class GameManager : MonoBehaviour
     private void TriggerStartGame()
     {
         Debug.Log("StartGame");
-        StartGame?.Invoke();
+        StartGame?.Invoke(true);
+    }
+
+    private void TriggerEndGame(bool won)
+    {
+        StartGame?.Invoke(false);
     }
 }
