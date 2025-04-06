@@ -58,7 +58,7 @@ public class NavigationManager : MonoBehaviour
 
     private void HandleChangeMenu(string id)
     {
-        _gameManager.HandleMenuChange(id);
+        if(!_gameStarted) _gameManager.HandleMenuChange(id);
 
         if (audioDataSource.DataInstance != null)
             audioDataSource.DataInstance.PlayAudio(buttonClickAudio);
@@ -85,8 +85,6 @@ public class NavigationManager : MonoBehaviour
                 break;
             }
         }
-
-        triggerGameStart?.Invoke();
     }
 
     private void HandleEndgame(bool isWin)
@@ -112,8 +110,12 @@ public class NavigationManager : MonoBehaviour
         _gameManager.HandlePauseGame(_isGamePaused);
     }
 
-    private void HandleStartGame()
+    private void HandleStartGame(bool startGame)
     {
-        _gameStarted = true;
+        Debug.Log("Game started: " + startGame);
+        _gameStarted = startGame;
+
+        if (_gameStarted)
+            triggerGameStart?.Invoke();
     }
 }

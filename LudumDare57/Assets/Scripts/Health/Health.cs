@@ -24,6 +24,8 @@ public class Health : MonoBehaviour, IAttackable
     {
         _currentHealth = _maxLife;
         IsAlive = true;
+
+        MaxLifeEvent?.Invoke(_maxLife);
     }
 
     public void TakeDamage()
