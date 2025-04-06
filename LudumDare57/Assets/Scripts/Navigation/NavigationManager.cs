@@ -1,4 +1,6 @@
+using Audio;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class NavigationManager : MonoBehaviour
@@ -7,11 +9,29 @@ public class NavigationManager : MonoBehaviour
     [SerializeField] private List<MenuDataSource> _menusWithId;
 
     [SerializeField] private GameManager _gameManager;
-    [SerializeField] private LevelManager _levelManager;
+    [SerializeField] private InputHandler inputHandler;
+    [SerializeField] private LevelManager _gameController;
+
+    [SerializeField] private AudioDataSource audioDataSource;
+    [SerializeField] private AudioConfig buttonClickAudio;
 
     [SerializeField] private MenuDataSource _endScreenId;
 
     private int _currentMenuIndex = 0;
+    private bool _gameStarted = false;
+    private bool _isGamePaused = false;
+
+    private void OnEnable()
+    {
+        inputHandler.PauseEvent += HandleOpenPauseMenu;
+        _gameManager.StartGame += HandleStartGame;
+    }
+
+    private void OnDisable()
+    {
+        inputHandler.PauseEvent -= HandleOpenPauseMenu;
+        _gameManager.StartGame -= HandleStartGame;
+    }
 
     private void OnEnable()
     {
@@ -43,9 +63,25 @@ public class NavigationManager : MonoBehaviour
 
     private void HandleChangeMenu(string id)
     {
+        _gameManager.HandleMenuChange(id);
+
+        if (audioDataSource.DataInstance != null)
+            audioDataSource.DataInstance.PlayAudio(buttonClickAudio);
+
+        if (_gameStarted && _menusWithId.Count > 0 && _menusWithId[0].menuId == id)
+        {
+            var ingameMenu = _menusWithId.FirstOrDefault(menu => menu._isIngameMenu);
+            if (ingameMenu != null && ingameMenu.DataInstance != null)
+            {
+                HandleOpenPauseMenu();
+                return;
+            }
+        }
+
         for (var i = 0; i < _menusWithId.Count; i++)
         {
             var menuWithId = _menusWithId[i];
+
             if (menuWithId.menuId == id)
             {
                 _menusWithId[_currentMenuIndex].DataInstance.gameObject.SetActive(false);
@@ -61,5 +97,28 @@ public class NavigationManager : MonoBehaviour
     private void HandleEndgame(bool isWin)
     {
         HandleChangeMenu(_endScreenId.name);
+    }
+
+    private void HandleOpenPauseMenu()
+    {
+        if(!_gameStarted) return;
+
+        _isGamePaused = !_isGamePaused;
+
+        if (_isGamePaused)
+            HandleChangeMenu("Settings");
+
+        else
+        {
+            _menusWithId[_currentMenuIndex].DataInstance.gameObject.SetActive(false);
+            HandleChangeMenu("Play");
+        }
+
+        _gameManager.HandlePauseGame(_isGamePaused);
+    }
+
+    private void HandleStartGame()
+    {
+        _gameStarted = true;
     }
 }

@@ -10,6 +10,8 @@ public class InputHandler : MonoBehaviour
     public Action StopMovementEvent;
     public Action OnClickEvent;
 
+    public Action PauseEvent;
+
     private void OnEnable()
     {
         _inputActions.Enable();
@@ -30,6 +32,7 @@ public class InputHandler : MonoBehaviour
         _inputActions.Player.Move.performed += HandldeMovement;
         _inputActions.Player.Move.canceled += HandleStopMovement;
         _inputActions.Player.Click.performed += HandleCLick;
+        _inputActions.Player.Pause.performed += HandlePauseGame;
     }
 
     private void HandldeMovement(InputAction.CallbackContext inputContext)
@@ -45,5 +48,10 @@ public class InputHandler : MonoBehaviour
     private void HandleCLick(InputAction.CallbackContext inputContext)
     {
         OnClickEvent?.Invoke();
+    }
+
+    private void HandlePauseGame(InputAction.CallbackContext inputContext)
+    {
+        PauseEvent?.Invoke();
     }
 }

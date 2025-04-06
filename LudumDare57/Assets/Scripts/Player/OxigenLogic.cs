@@ -1,3 +1,4 @@
+using Audio;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,6 +8,10 @@ public class OxigenLogic : MonoBehaviour
 {
     [SerializeField] private float _maxOxigen = 100f;
     [SerializeField] private float _oxigenLostPerSecond = 1.0f;
+
+    [Header("Audio")]
+    [SerializeField] private AudioDataSource audioManager;
+    [SerializeField] private AudioConfig getOxigenAudio;
 
     private float _currentOxigen;
 
@@ -27,7 +32,12 @@ public class OxigenLogic : MonoBehaviour
     {
         _currentOxigen += oxigenToAdd;
         if(_currentOxigen > _maxOxigen)
+        {
             _currentOxigen = _maxOxigen;
+
+            if (audioManager.DataInstance != null)
+                audioManager.DataInstance.PlayAudio(getOxigenAudio);
+        }
 
         CurrentAndFullOxigenEvent?.Invoke(_currentOxigen, _maxOxigen);
     }

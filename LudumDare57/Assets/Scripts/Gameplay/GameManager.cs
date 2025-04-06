@@ -8,6 +8,15 @@ public class GameManager : MonoBehaviour
 
     public event Action StartGame;
 
+    public void HandlePauseGame(bool isGamePaused)
+    {
+        if (isGamePaused)
+            Time.timeScale = 0f;
+
+        else
+            Time.timeScale = 1f;
+    }
+
     public void HandleMenuChange(string id)
     {
         if (id == playId.menuId)
