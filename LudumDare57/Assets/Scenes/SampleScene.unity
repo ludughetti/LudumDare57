@@ -1670,6 +1670,7 @@ GameObject:
   - component: {fileID: 98003476}
   - component: {fileID: 98003478}
   - component: {fileID: 98003477}
+  - component: {fileID: 98003479}
   m_Layer: 0
   m_Name: FloatingStone (6)
   m_TagString: Untagged
@@ -1803,6 +1804,45 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &98003479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 98003475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 029ba3afe28320142831464d70a088f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  verticalAmplitude: 0.7
+  horizontalAmplitude: 0.2
+  movementSpeed: 0.1
 --- !u!1 &103912728
 GameObject:
   m_ObjectHideFlags: 0
@@ -5536,6 +5576,7 @@ GameObject:
   - component: {fileID: 302842652}
   - component: {fileID: 302842654}
   - component: {fileID: 302842653}
+  - component: {fileID: 302842655}
   m_Layer: 0
   m_Name: FloatingStone (7)
   m_TagString: Untagged
@@ -5669,6 +5710,45 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &302842655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 302842651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 029ba3afe28320142831464d70a088f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  verticalAmplitude: 0.6
+  horizontalAmplitude: 0.2
+  movementSpeed: 0.1
 --- !u!1 &319658565
 GameObject:
   m_ObjectHideFlags: 0
@@ -6261,6 +6341,7 @@ GameObject:
   - component: {fileID: 347147311}
   - component: {fileID: 347147313}
   - component: {fileID: 347147312}
+  - component: {fileID: 347147314}
   m_Layer: 0
   m_Name: FloatingStone (3)
   m_TagString: Untagged
@@ -6394,6 +6475,45 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &347147314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347147310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 029ba3afe28320142831464d70a088f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  verticalAmplitude: 0.7
+  horizontalAmplitude: 0.1
+  movementSpeed: 0.1
 --- !u!1 &353662767
 GameObject:
   m_ObjectHideFlags: 0
@@ -12623,6 +12743,7 @@ GameObject:
   - component: {fileID: 623514891}
   - component: {fileID: 623514893}
   - component: {fileID: 623514892}
+  - component: {fileID: 623514894}
   m_Layer: 0
   m_Name: FloatingStone (10)
   m_TagString: Untagged
@@ -12756,6 +12877,45 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &623514894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 623514890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 029ba3afe28320142831464d70a088f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  verticalAmplitude: 0.9
+  horizontalAmplitude: 0.2
+  movementSpeed: 0.1
 --- !u!1 &628003698
 GameObject:
   m_ObjectHideFlags: 0
@@ -13632,6 +13792,7 @@ GameObject:
   - component: {fileID: 664623758}
   - component: {fileID: 664623760}
   - component: {fileID: 664623759}
+  - component: {fileID: 664623761}
   m_Layer: 0
   m_Name: FloatingStone (1)
   m_TagString: Untagged
@@ -13765,6 +13926,45 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &664623761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664623757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 029ba3afe28320142831464d70a088f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  verticalAmplitude: 0.3
+  horizontalAmplitude: 0.4
+  movementSpeed: 0.1
 --- !u!1 &666385340
 GameObject:
   m_ObjectHideFlags: 0
@@ -14233,6 +14433,7 @@ GameObject:
   - component: {fileID: 691084127}
   - component: {fileID: 691084129}
   - component: {fileID: 691084128}
+  - component: {fileID: 691084130}
   m_Layer: 0
   m_Name: FloatingStone (5)
   m_TagString: Untagged
@@ -14366,6 +14567,45 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &691084130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 691084126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 029ba3afe28320142831464d70a088f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  verticalAmplitude: 0.5
+  horizontalAmplitude: 0.2
+  movementSpeed: 0.1
 --- !u!1 &703881930
 GameObject:
   m_ObjectHideFlags: 0
@@ -20609,6 +20849,7 @@ GameObject:
   - component: {fileID: 1083350277}
   - component: {fileID: 1083350279}
   - component: {fileID: 1083350278}
+  - component: {fileID: 1083350280}
   m_Layer: 0
   m_Name: FloatingStone (8)
   m_TagString: Untagged
@@ -20742,6 +20983,45 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1083350280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1083350276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 029ba3afe28320142831464d70a088f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  verticalAmplitude: 0.5
+  horizontalAmplitude: 0.2
+  movementSpeed: 0.1
 --- !u!1 &1085183883
 GameObject:
   m_ObjectHideFlags: 0
@@ -27106,6 +27386,63 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &1397412260
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1041006948186062768, guid: 906b1adc96741f3468d77374b9801e94, type: 3}
+      propertyPath: m_Name
+      value: Impulse
+      objectReference: {fileID: 0}
+    - target: {fileID: 2098931449695687638, guid: 906b1adc96741f3468d77374b9801e94, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.0282469
+      objectReference: {fileID: 0}
+    - target: {fileID: 2098931449695687638, guid: 906b1adc96741f3468d77374b9801e94, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.38375723
+      objectReference: {fileID: 0}
+    - target: {fileID: 2098931449695687638, guid: 906b1adc96741f3468d77374b9801e94, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2098931449695687638, guid: 906b1adc96741f3468d77374b9801e94, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2098931449695687638, guid: 906b1adc96741f3468d77374b9801e94, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2098931449695687638, guid: 906b1adc96741f3468d77374b9801e94, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2098931449695687638, guid: 906b1adc96741f3468d77374b9801e94, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2098931449695687638, guid: 906b1adc96741f3468d77374b9801e94, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2098931449695687638, guid: 906b1adc96741f3468d77374b9801e94, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2098931449695687638, guid: 906b1adc96741f3468d77374b9801e94, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 906b1adc96741f3468d77374b9801e94, type: 3}
 --- !u!1 &1401024300
 GameObject:
   m_ObjectHideFlags: 0
@@ -31816,6 +32153,7 @@ GameObject:
   - component: {fileID: 1653224496}
   - component: {fileID: 1653224498}
   - component: {fileID: 1653224497}
+  - component: {fileID: 1653224499}
   m_Layer: 0
   m_Name: FloatingStone (2)
   m_TagString: Untagged
@@ -31949,6 +32287,45 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1653224499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1653224495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 029ba3afe28320142831464d70a088f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  verticalAmplitude: 1
+  horizontalAmplitude: 0.2
+  movementSpeed: 0.1
 --- !u!1 &1655282384
 GameObject:
   m_ObjectHideFlags: 0
@@ -33623,6 +34000,7 @@ GameObject:
   - component: {fileID: 1775276852}
   - component: {fileID: 1775276854}
   - component: {fileID: 1775276853}
+  - component: {fileID: 1775276855}
   m_Layer: 0
   m_Name: FloatingStone (4)
   m_TagString: Untagged
@@ -33756,6 +34134,45 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1775276855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1775276851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 029ba3afe28320142831464d70a088f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  verticalAmplitude: 1
+  horizontalAmplitude: 0.3
+  movementSpeed: 0.1
 --- !u!1 &1776589328
 GameObject:
   m_ObjectHideFlags: 0
@@ -36459,6 +36876,7 @@ GameObject:
   - component: {fileID: 1872005046}
   - component: {fileID: 1872005048}
   - component: {fileID: 1872005049}
+  - component: {fileID: 1872005050}
   m_Layer: 0
   m_Name: FloatingStone
   m_TagString: Untagged
@@ -36592,6 +37010,45 @@ PolygonCollider2D:
       - {x: -0.415, y: -0.01}
       - {x: -0.13, y: -0.16}
   m_UseDelaunayMesh: 0
+--- !u!114 &1872005050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1872005045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 029ba3afe28320142831464d70a088f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  verticalAmplitude: 1
+  horizontalAmplitude: 0.2
+  movementSpeed: 0.1
 --- !u!1 &1873776427
 GameObject:
   m_ObjectHideFlags: 0
@@ -37429,83 +37886,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1001 &1945574312
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 419593477974112888, guid: 1a21268725a490845b72958c8f604933, type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 657844916}
-    - target: {fileID: 419593477974112888, guid: 1a21268725a490845b72958c8f604933, type: 3}
-      propertyPath: waypoints.Array.data[0]
-      value: 
-      objectReference: {fileID: 1809838586}
-    - target: {fileID: 419593477974112888, guid: 1a21268725a490845b72958c8f604933, type: 3}
-      propertyPath: waypoints.Array.data[1]
-      value: 
-      objectReference: {fileID: 32138764}
-    - target: {fileID: 1517947490862447428, guid: 1a21268725a490845b72958c8f604933, type: 3}
-      propertyPath: m_Name
-      value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 8137147207663002785, guid: 1a21268725a490845b72958c8f604933, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8137147207663002785, guid: 1a21268725a490845b72958c8f604933, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8340359619096946409, guid: 1a21268725a490845b72958c8f604933, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -3.53
-      objectReference: {fileID: 0}
-    - target: {fileID: 8340359619096946409, guid: 1a21268725a490845b72958c8f604933, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.08
-      objectReference: {fileID: 0}
-    - target: {fileID: 8340359619096946409, guid: 1a21268725a490845b72958c8f604933, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8340359619096946409, guid: 1a21268725a490845b72958c8f604933, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8340359619096946409, guid: 1a21268725a490845b72958c8f604933, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8340359619096946409, guid: 1a21268725a490845b72958c8f604933, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8340359619096946409, guid: 1a21268725a490845b72958c8f604933, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8340359619096946409, guid: 1a21268725a490845b72958c8f604933, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8340359619096946409, guid: 1a21268725a490845b72958c8f604933, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8340359619096946409, guid: 1a21268725a490845b72958c8f604933, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 1a21268725a490845b72958c8f604933, type: 3}
 --- !u!1 &1946227022
 GameObject:
   m_ObjectHideFlags: 0
@@ -48201,7 +48581,7 @@ SceneRoots:
   - {fileID: 151403702}
   - {fileID: 994877551}
   - {fileID: 423457008}
-  - {fileID: 1945574312}
   - {fileID: 1239616936}
   - {fileID: 475232113}
   - {fileID: 1661753465}
+  - {fileID: 1397412260}

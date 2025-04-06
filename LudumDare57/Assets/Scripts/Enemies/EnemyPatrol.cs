@@ -59,6 +59,9 @@ public class EnemyPatrol : MonoBehaviour
     {
         if (gameManager)
             gameManager.StartGame -= HandleGameStarted;
+
+        if (_stopChaseCoroutine != null)
+            StopCoroutine(_stopChaseCoroutine);
     }
 
     private void Awake()
