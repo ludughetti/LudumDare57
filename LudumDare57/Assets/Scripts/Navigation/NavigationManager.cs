@@ -1,4 +1,5 @@
 using Audio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -16,6 +17,8 @@ public class NavigationManager : MonoBehaviour
     [SerializeField] private AudioConfig buttonClickAudio;
 
     [SerializeField] private MenuDataSource _endScreenId;
+
+    public Action triggerGameStart;
 
     private int _currentMenuIndex = 0;
     private bool _gameStarted = false;
@@ -83,7 +86,7 @@ public class NavigationManager : MonoBehaviour
             }
         }
 
-        _gameManager.HandleMenuChange(id);
+        triggerGameStart?.Invoke();
     }
 
     private void HandleEndgame(bool isWin)

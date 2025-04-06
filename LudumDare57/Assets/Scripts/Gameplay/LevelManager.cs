@@ -11,7 +11,6 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private AudioConfig loseAudio;
     [SerializeField] private AudioConfig winAudio;
 
-    public Action<bool> triggerGameStart;
     public Action<bool> triggerEndgame;
 
     private void OnEnable()

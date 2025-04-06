@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("Managers")]
-    [SerializeField] private GameManager _gameManager;
     [SerializeField] private NavigationManager _navManager;
     [SerializeField] private GameplayConfigs _gameplayConfigs;
     [SerializeField] private InputHandler _inputHandler;
@@ -43,8 +42,8 @@ public class PlayerController : MonoBehaviour
         _inputHandler.StopMovementEvent += StopMovement;
         _oxigenLogic.AllOxigenLostEvent += HandleDead;
         _health.IsDeadEvent += HandleDead;
-        _gameManager.StartGame += ResetPlayer;
-        _health.OnHealthChange += (int temp) => IsDamagedEvent?.Invoke(); 
+        _health.OnHealthChange += (int temp) => IsDamagedEvent?.Invoke();
+        _navManager.triggerGameStart += ResetPlayer;
     }
 
     private void OnDisable()
@@ -53,8 +52,8 @@ public class PlayerController : MonoBehaviour
         _inputHandler.StopMovementEvent -= StopMovement;
         _oxigenLogic.AllOxigenLostEvent -= HandleDead;
         _health.IsDeadEvent -= HandleDead;
-        _gameManager.StartGame -= ResetPlayer;
         _health.OnHealthChange -= (int temp) => IsDamagedEvent?.Invoke();
+        _navManager.triggerGameStart -= ResetPlayer;
     }
 
     private void Update()

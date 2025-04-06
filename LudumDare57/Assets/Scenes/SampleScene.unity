@@ -35899,6 +35899,10 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5508272554564940478, guid: 3bed43a1699506841a89aa0825c41941, type: 3}
+      propertyPath: _navManager
+      value: 
+      objectReference: {fileID: 151403703}
+    - target: {fileID: 5508272554564940478, guid: 3bed43a1699506841a89aa0825c41941, type: 3}
       propertyPath: _spawnPoint
       value: 
       objectReference: {fileID: 1029526695}
