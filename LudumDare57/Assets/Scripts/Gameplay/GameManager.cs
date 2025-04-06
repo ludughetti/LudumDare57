@@ -3,22 +3,11 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private DialogueSystem _dialogueSystem;
     [SerializeField] private MenuDataSource playId;
     [SerializeField] private MenuDataSource exitId;
 
     public event Action StartGame;
     public event Action EndGame;
-
-    private void OnEnable()
-    {
-        _dialogueSystem.DialogueEnd += TriggerStartGame;
-    }
-
-    private void OnDisable()
-    {
-        _dialogueSystem.DialogueEnd -= TriggerStartGame;
-    }
 
     public void HandleMenuChange(string id)
     {
