@@ -10,7 +10,7 @@ public class NavigationManager : MonoBehaviour
 
     [SerializeField] private GameManager _gameManager;
     [SerializeField] private InputHandler inputHandler;
-    [SerializeField] private LevelManager _gameController;
+    [SerializeField] private LevelManager _levelManager;
 
     [SerializeField] private AudioDataSource audioDataSource;
     [SerializeField] private AudioConfig buttonClickAudio;
@@ -25,21 +25,13 @@ public class NavigationManager : MonoBehaviour
     {
         inputHandler.PauseEvent += HandleOpenPauseMenu;
         _gameManager.StartGame += HandleStartGame;
+        _levelManager.triggerEndgame += HandleEndgame;
     }
 
     private void OnDisable()
     {
         inputHandler.PauseEvent -= HandleOpenPauseMenu;
         _gameManager.StartGame -= HandleStartGame;
-    }
-
-    private void OnEnable()
-    {
-        _levelManager.triggerEndgame += HandleEndgame;
-    }
-
-    private void OnDisable()
-    {
         _levelManager.triggerEndgame -= HandleEndgame;
     }
 

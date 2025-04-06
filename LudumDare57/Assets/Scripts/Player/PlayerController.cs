@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Managers")]
     [SerializeField] private GameManager _gameManager;
+    [SerializeField] private NavigationManager _navManager;
     [SerializeField] private GameplayConfigs _gameplayConfigs;
     [SerializeField] private InputHandler _inputHandler;
     [SerializeField] private OxigenLogic _oxigenLogic;
