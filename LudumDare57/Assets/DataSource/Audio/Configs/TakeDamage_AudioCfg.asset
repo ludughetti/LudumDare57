@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d73f4c2df8952924394c13061a5114b4, type: 3}
   m_Name: TakeDamage_AudioCfg
   m_EditorClassIdentifier: 
-  <Clip>k__BackingField: {fileID: 8300000, guid: 84633aee22838e845bc1c0288ce1d8f7, type: 3}
+  <Clip>k__BackingField: {fileID: 8300000, guid: 5e115dbc938a4c7448544bebe3c9cd2c, type: 3}
   <Loop>k__BackingField: 0
   <Volume>k__BackingField: 1
   <IsMusic>k__BackingField: 0

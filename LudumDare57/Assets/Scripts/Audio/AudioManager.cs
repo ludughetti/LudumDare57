@@ -77,6 +77,7 @@ namespace Audio
             newSource.clip = audioConfig.Clip;
             newSource.loop = audioConfig.Loop;
             newSource.volume = audioConfig.Volume;
+            newSource.playOnAwake = false;
 
             newSource.outputAudioMixerGroup = audioConfig.IsMusic ? musicGroup : sfxGroup;
 

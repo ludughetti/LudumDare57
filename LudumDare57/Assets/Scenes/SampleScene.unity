@@ -14689,6 +14689,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 1846709237}
+  audioManager: {fileID: 11400000, guid: 061c4806f3994c44f8413dedb4fcd2a5, type: 2}
+  loseAudio: {fileID: 11400000, guid: 9d4f92d7287c5fb46a1aae39d6bbab3a, type: 2}
+  winAudio: {fileID: 11400000, guid: 7019596464d2f6c4d90ddddefc43108c, type: 2}
 --- !u!61 &712265425
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -35401,6 +35404,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 274585628904234715, guid: 3bed43a1699506841a89aa0825c41941, type: 3}
+      propertyPath: audioManager
+      value: 
+      objectReference: {fileID: 11400000, guid: 061c4806f3994c44f8413dedb4fcd2a5, type: 2}
+    - target: {fileID: 274585628904234715, guid: 3bed43a1699506841a89aa0825c41941, type: 3}
+      propertyPath: takeDamageAudio
+      value: 
+      objectReference: {fileID: 11400000, guid: 14144491b25fb0a49a232038c89c7b2a, type: 2}
     - target: {fileID: 961780054334599504, guid: 3bed43a1699506841a89aa0825c41941, type: 3}
       propertyPath: m_BodyType
       value: 0
@@ -43155,6 +43166,13 @@ MonoBehaviour:
   _dialogueText: {fileID: 1571833114560999657}
   _dialogue: {fileID: 11400000, guid: 898779012eab5c04ebf9b595d5428e48, type: 2}
   _textSpeed: 0.05
+  audioManager: {fileID: 11400000, guid: 061c4806f3994c44f8413dedb4fcd2a5, type: 2}
+  mermaidVoices:
+  - {fileID: 11400000, guid: 297e9f730e9611a44bfe667a2cff8c11, type: 2}
+  - {fileID: 11400000, guid: 3282e71b34948534f8b8a935727b05b8, type: 2}
+  duckVoices:
+  - {fileID: 11400000, guid: f2b0137c1b0769c4186f180cdb5d930b, type: 2}
+  - {fileID: 11400000, guid: 9a2938c8dd68b594fb4de37f78f37b2a, type: 2}
 --- !u!1 &3445012114935304586
 GameObject:
   m_ObjectHideFlags: 0
@@ -44664,25 +44682,25 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Developers .............................................................
+  m_text: 'Developers ...................................................................................
 
 
 
 
     Art
-    ............................................................................
+    .................................................................................................
 
 
 
 
 
     UI
-    .............................................................................
+    ...................................................................................................
 
 
 
-    Music
-    ........................................................................'
+    Audio
+    ..............................................................................................'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 02c74e61ef7ab8b47be738dba761e9e2, type: 2}
   m_sharedMaterial: {fileID: 1026967200721448072, guid: 02c74e61ef7ab8b47be738dba761e9e2, type: 2}
@@ -44709,8 +44727,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
-  m_fontSizeBase: 60
+  m_fontSize: 55
+  m_fontSizeBase: 55
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -45143,7 +45161,9 @@ MonoBehaviour:
     Dream Mix
 
 
-    BenjiJam'
+    BenjiJam
+
+    JDWasabi'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 02c74e61ef7ab8b47be738dba761e9e2, type: 2}
   m_sharedMaterial: {fileID: 1026967200721448072, guid: 02c74e61ef7ab8b47be738dba761e9e2, type: 2}
@@ -45170,8 +45190,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
-  m_fontSizeBase: 60
+  m_fontSize: 55
+  m_fontSizeBase: 55
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -46629,8 +46649,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 350, y: -25}
-  m_SizeDelta: {x: -800, y: -150}
+  m_AnchoredPosition: {x: 400, y: -25}
+  m_SizeDelta: {x: -900, y: -150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7749606666994043478
 MonoBehaviour:
@@ -47507,7 +47527,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 65.96799, y: -3.4682007}
+  m_AnchoredPosition: {x: 65.96802, y: -3.4681396}
   m_SizeDelta: {x: -238.1238, y: -107.9092}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &7871017658128376549

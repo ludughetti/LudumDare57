@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d73f4c2df8952924394c13061a5114b4, type: 3}
-  m_Name: Dialogue_AudioCfg
+  m_Name: DuckVoice1_AudioCfg
   m_EditorClassIdentifier: 
-  <Clip>k__BackingField: {fileID: 8300000, guid: 84633aee22838e845bc1c0288ce1d8f7, type: 3}
+  <Clip>k__BackingField: {fileID: 8300000, guid: bcc0adc4249eb6f4799650f64f66768c, type: 3}
   <Loop>k__BackingField: 0
-  <Volume>k__BackingField: 1
+  <Volume>k__BackingField: 0.1
   <IsMusic>k__BackingField: 0

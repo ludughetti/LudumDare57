@@ -110,6 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c5081d779a86f641afcd4efc1614110, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   config: {fileID: 11400000, guid: ab353b2a51889d64f8c8a03ee67b0496, type: 2}
   waypoints:
   - {fileID: 0}
@@ -121,6 +122,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   attackDistance: 2
+  audioManager: {fileID: 11400000, guid: 061c4806f3994c44f8413dedb4fcd2a5, type: 2}
+  attackAudio: {fileID: 11400000, guid: 06cbd99237a19034394b58eb0463be1f, type: 2}
 --- !u!114 &7606248668620681126
 MonoBehaviour:
   m_ObjectHideFlags: 0

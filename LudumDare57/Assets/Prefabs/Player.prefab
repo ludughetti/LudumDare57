@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b128a2b1cbdb1140a5bf37e38fbaaf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameManager: {fileID: 0}
   _gameplayConfigs: {fileID: 11400000, guid: 2e42ac697ed90484cb4e757b09964244, type: 2}
   _inputHandler: {fileID: 0}
   _oxigenLogic: {fileID: -8887962350811395785}
@@ -141,6 +142,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOxigen: 100
   _oxigenLostPerSecond: 1
+  audioManager: {fileID: 11400000, guid: 061c4806f3994c44f8413dedb4fcd2a5, type: 2}
+  getOxigenAudio: {fileID: 11400000, guid: 2082437e6921c9b45bcdb53d656429c9, type: 2}
 --- !u!114 &274585628904234715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,6 +157,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxLife: 10
+  audioManager: {fileID: 11400000, guid: 061c4806f3994c44f8413dedb4fcd2a5, type: 2}
+  takeDamageAudio: {fileID: 11400000, guid: 14144491b25fb0a49a232038c89c7b2a, type: 2}
 --- !u!1 &6440071884712141000
 GameObject:
   m_ObjectHideFlags: 0

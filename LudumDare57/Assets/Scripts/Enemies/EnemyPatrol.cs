@@ -1,3 +1,4 @@
+using Audio;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -21,6 +22,10 @@ public class EnemyPatrol : MonoBehaviour
 
     [Header("Combat Settings")]
     [SerializeField] private float attackDistance = 1.5f;
+
+    [Header("Audio")]
+    [SerializeField] private AudioDataSource audioManager;
+    [SerializeField] private AudioConfig attackAudio;
 
     private Rigidbody2D _rigidbody;
     private EnemySlide _slide;
@@ -161,6 +166,12 @@ public class EnemyPatrol : MonoBehaviour
 
                 if (!attackable.IsAlive)
                     _playerIsDead = true;
+            }
+
+            if(audioManager.DataInstance != null)
+            {
+                audioManager.DataInstance.PlayAudio(attackAudio);
+                Debug.Log("attack!");
             }
 
             OnAction?.Invoke(EnemyStates.ATTACK);

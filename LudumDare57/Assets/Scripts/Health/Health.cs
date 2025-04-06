@@ -1,3 +1,4 @@
+using Audio;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,6 +7,10 @@ using UnityEngine;
 public class Health : MonoBehaviour, IAttackable
 {
     [SerializeField] private int _maxLife = 10;
+
+    [Header("Audio")]
+    [SerializeField] private AudioDataSource audioManager;
+    [SerializeField] private AudioConfig takeDamageAudio;
 
     private int _currentHealth;
 
@@ -32,7 +37,10 @@ public class Health : MonoBehaviour, IAttackable
             return;
         _currentHealth--;
 
-        if (_currentHealth < 0)
+        if (audioManager.DataInstance != null)
+            audioManager.DataInstance.PlayAudio(takeDamageAudio);
+
+        if (_currentHealth <= 0)
         {
             IsAlive = false;
             IsDeadEvent?.Invoke();

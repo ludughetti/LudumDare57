@@ -18,19 +18,6 @@ namespace UI
         [SerializeField] private Slider musicSlider;
         [SerializeField] private Slider sfxSlider;
 
-        private string _masterVolume;
-        private string _musicVolume;
-        private string _sfxVolume;
-
-        private Dictionary<Button, SoundButtons> _buttonIcons;
-
-        private void OnEnable()
-        {
-            _masterVolume = audioManager.MasterVolume;
-            _musicVolume = audioManager.MusicVolume;
-            _sfxVolume = audioManager.SFXVolume;
-        }
-
         private void Start()
         {
             masterSlider.onValueChanged.AddListener(UpdateMasterVolume);

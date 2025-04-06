@@ -1,9 +1,15 @@
+using Audio;
 using System;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] private PlayerController _player;
+
+    [Header("Audio")]
+    [SerializeField] private AudioDataSource audioManager;
+    [SerializeField] private AudioConfig loseAudio;
+    [SerializeField] private AudioConfig winAudio;
 
     public Action<bool> triggerEndgame;
 
@@ -29,11 +35,17 @@ public class LevelManager : MonoBehaviour
     {
         Debug.Log("Player lost!");
         triggerEndgame?.Invoke(false);
+
+        if (audioManager.DataInstance != null)
+            audioManager.DataInstance.PlayAudio(loseAudio);
     }
 
     private void HandlePlayerWin()
     {
         Debug.Log("Player Win!");
         triggerEndgame?.Invoke(true);
+
+        if (audioManager.DataInstance != null)
+            audioManager.DataInstance.PlayAudio(winAudio);
     }
 }
