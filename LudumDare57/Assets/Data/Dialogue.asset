@@ -16,17 +16,21 @@ MonoBehaviour:
   - character: Ducky
     message: ... Where am i?
   - character: Mermaid
-    message: Oh! you finally wake up!!
+    message: Oh! You finally woke up!!
   - character: Ducky
     message: A mermaid!? WHERE AM I?!
   - character: Mermaid
     message: You're down in the depths of the ocean, but don't be afraid!
   - character: Ducky
-    message: Don't be afraid? I can't live without oxygen!
+    message: Don't be afraid? I can't breathe down here!
   - character: Mermaid
-    message: You can get it from the shells! When they're open, the bubbles give
-      you oxygen! And some bubbles can give you an impulse!
+    message: Look for the shells! When they open, bubbles will release and give you
+      oxygen!
   - character: Mermaid
-    message: Just be careful... Some sea creatures can hurt you...
+    message: Also, plankton releases water every now and then... use it to propel
+      you towards the surface!
   - character: Mermaid
-    message: GOOD LUCK! Click on play button to continue!
+    message: Oh, by the way... some sea creatures won't like having you around. Be
+      careful!
+  - character: Mermaid
+    message: Good luck, Ducky!
