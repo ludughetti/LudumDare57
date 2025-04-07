@@ -5,7 +5,7 @@ using UnityEngine;
 public class ImpulseBubbles : MonoBehaviour
 {
     [SerializeField] private List<GameObject> _bubbles;
-    [SerializeField] private float _firtsImpulse = 10f;
+    [SerializeField] private float _firstImpulse = 10f;
     [SerializeField] private float _impulse = 2.5f;
 
     private bool _hasJustEntered = false;
@@ -22,7 +22,7 @@ public class ImpulseBubbles : MonoBehaviour
             player.SetExternalForce(transform.up * _impulse);
             if (!_hasJustEntered)
             {
-                player.SetExternalForce(transform.up * _firtsImpulse);
+                player.SetExternalForce(transform.up * _firstImpulse);
                 StartCoroutine(ResetEnterFlag());
             }
         }
