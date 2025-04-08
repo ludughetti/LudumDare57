@@ -111,13 +111,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
-  config: {fileID: 11400000, guid: ab353b2a51889d64f8c8a03ee67b0496, type: 2}
+  config: {fileID: 11400000, guid: ea1bef49fda68284ab9e5c71ed2e6b7e, type: 2}
   waypoints:
   - {fileID: 0}
   - {fileID: 0}
-  patrolSpeed: 2
-  chaseSpeed: 3
-  chaseDuration: 2
+  - {fileID: 0}
+  patrolSpeed: 1.5
+  chaseSpeed: 2
+  chaseDuration: 1
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -235,7 +236,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 4
   m_Sprite: {fileID: 1739785249, guid: 7f4577c17bfc43c4981801559749b168, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
